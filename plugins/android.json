@@ -9,61 +9,61 @@
   "installed_plugins": {
     "cordova-plugin-advanced-http": {
       "OKHTTP_VERSION": "3.10.0",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-datepicker": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-facebook4": {
       "APP_ID": "1251992288300617",
       "APP_NAME": "ionicsocial",
       "FACEBOOK_HYBRID_APP_EVENTS": "false",
       "FACEBOOK_ANDROID_SDK_VERSION": "5.0.2",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-fcm-with-dependecy-updated": {
       "FCM_CORE_VERSION": "16.0.9",
       "FCM_VERSION": "18.0.0",
       "GRADLE_TOOLS_VERSION": "3.5.0",
       "GOOGLE_SERVICES_VERSION": "4.2.0",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-googleplus": {
       "PLAY_SERVICES_VERSION": "11.8.0",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-nativestorage": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-badge": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.rao.leavemanager"
     }
   }
 }

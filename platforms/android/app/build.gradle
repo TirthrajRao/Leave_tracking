@@ -98,9 +98,9 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../cordova-plugin-badge/starter-badge.gradle"
-apply from: "../cordova-plugin-fcm-with-dependecy-updated/starter-FCMPlugin.gradle"
-apply from: "../cordova-plugin-local-notification/starter-localnotification.gradle"
+apply from: "../cordova-plugin-badge/leavemanager-badge.gradle"
+apply from: "../cordova-plugin-fcm-with-dependecy-updated/leavemanager-FCMPlugin.gradle"
+apply from: "../cordova-plugin-local-notification/leavemanager-localnotification.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
