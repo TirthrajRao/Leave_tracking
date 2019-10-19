@@ -55,139 +55,172 @@
     <div class="loader" *ngIf="loading">
       <img class="loading_img" src="../../assets/images/loader.gif" />
     </div>
-    <div class="step_one" style="display: none;">
 
-      <div class="absent_emp_text text-white" *ngIf="todaysLeave.length">
-        Absent Employee
-      </div>
+    <div class="absent_emp_text text-white" *ngIf="todaysLeave.length">
+      Absent Employee
+    </div>
 
-      <div *ngIf="todaysLeave.length">
-        <div *ngFor="let user of todaysLeave">
-          <div class="card">
+    <div *ngIf="todaysLeave.length">
+      <div *ngFor="let user of todaysLeave; let i=index">
+        <div class="card" style="cursor:pointer">
+          <label for="o{{i}}">
             <div class="card-content w-100">
               <div class="absent_user_name">
                 <a (click)="presentAlert(user)" href="javascript:void(0);" class="float-left">{{user.userId.name}}</a>
-                <a class="float-right">{{todayDate[2]}}/{{todayDate[1]}}/{{todayDate[0]}}</a>
+                <a class="float-right">{{user.date.date}}/{{user.date.month}}/{{user.date.year}}</a>
+              </div>
+            </div>
+          </label>
+          <input class="checker" type="checkbox" id="o{{i}}" hidden>
+          <div class="modal">
+            <div class="modal-body">
+              <div class="modal-content">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="text-white">Reason :</p>
+                    <div class="reason_text text-white"> {{user.reason}}</div>
+                  </div>
+                  <div class="col-12">
+                    <p class="text-white">Date :</p>
+                    <div class="reason_text text-white">{{user.date.date}}/{{user.date.month}}/{{user.date.year}}
+                    </div>
+                  </div>
+                  <div class="col-12" *ngIf="user.extraHours">
+                    <p class="text-white">Compensation :</p>
+                    <div class="reason_text text-white">{{user.extraHours}}
+                    </div>
+                  </div>
+                </div>
+                <div class="ok_btn text-center mt-3">
+                  <label for="o{{i}}">Ok</label>
+                </div>
+              </div>
+              <div class="close_btn">
+                <label for="o{{i}}">X</label>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="todayLeavesCount == 0" class="dataNotAvalible text-center mt-4">
-        <span>Everyone is Present</span>
       </div>
     </div>
+    <div *ngIf="todayLeavesCount == 0" class="dataNotAvalible text-center mt-4">
+      <span>Everyone is Present</span>
+    </div>
 
-    <div class="step_two" style="display:none">
-
-      <div *ngIf="approvedLeaves.length">
-        <div *ngFor="let leave of approvedLeaves; let i=index">
-          <div class="card" style="cursor: pointer;">
-            <label for="o{{i}}">
-              <div class="card-content  w-100 aproved_leaves">
-                <div class="row">
-                  <div class="col-4">
-                    <span>{{leave.userId.name}}</span>
-                  </div>
-                  <div class="col-4">
-                    <span>
-
-                      {{getNoOfDays(leave.noOfDays)}}
-                    </span>
-                  </div>
-                  <div class="col-4">
-                    <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
-                  </div>
+    <div *ngIf="approvedLeaves.length">
+      <div *ngFor="let leave of approvedLeaves; let i=index">
+        <div class="card" style="cursor: pointer;">
+          <label for="o{{i}}">
+            <div class="card-content  w-100 aproved_leaves">
+              <div class="row">
+                <div class="col-4">
+                  <span>{{leave.userId.name}}</span>
+                </div>
+                <div class="col-4">
+                  <span>
+                    {{getNoOfDays(leave)}}
+                  </span>
+                </div>
+                <div class="col-4">
+                  <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
                 </div>
               </div>
-            </label>
-            <input class="checker" type="checkbox" id="o{{i}}" hidden>
-            <div class="modal">
-              <div class="modal-body">
-                <div class="modal-content">
-                  <div class="row">
-                    <div class="col-12">
-                      <p class="text-white">Reason :</p>
-                      <div class="reason_text text-white"> {{leave.reason}}</div>
-                    </div>
-                    <div class="col-12">
-                      <p class="text-white">Date :</p>
-                      <div class="reason_text text-white">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <p class="text-white">Approved By :</p>
-                      <div class="reason_text text-white">{{leave.approvedBy}}</div>
+            </div>
+          </label>
+          <input class="checker" type="checkbox" id="o{{i}}" hidden>
+          <div class="modal">
+            <div class="modal-body">
+              <div class="modal-content">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="text-white">Reason :</p>
+                    <div class="reason_text text-white"> {{leave.reason}}</div>
+                  </div>
+                  <div class="col-12">
+                    <p class="text-white">Date :</p>
+                    <div class="reason_text text-white">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
                     </div>
                   </div>
-                  <div class="ok_btn text-center mt-3">
-                    <label for="o{{i}}">Ok</label>
+                  <div class="col-12">
+                    <p class="text-white">Approved By :</p>
+                    <div class="reason_text text-white">{{leave.approvedBy}}</div>
+                  </div>
+                  <div class="col-12" *ngIf="leave.extraHours">
+                    <p class="text-white">Compensation :</p>
+                    <div class="reason_text text-white">{{leave.extraHours}}
+                    </div>
                   </div>
                 </div>
-                <div class="close_btn">
-                  <label for="o{{i}}">X</label>
+                <div class="ok_btn text-center mt-3">
+                  <label for="o{{i}}">Ok</label>
                 </div>
+              </div>
+              <div class="close_btn">
+                <label for="o{{i}}">X</label>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="approvedLeavesCount == 0" class="dataNotAvalible">
-        <span class="text-center">No Approved Leaves Yet</span>
       </div>
     </div>
-    <div class="step_three" style="display:none">
-      <div *ngIf="pendingLeaves.length">
-        <div *ngFor="let leave of pendingLeaves ;let i=index">
-          <div class="card" style="cursor: pointer;">
-            <label for="o{{i}}">
-              <div class="card-content  w-100 aproved_leaves">
-                <div class="row">
-                  <div class="col-4">
-                    <span>{{leave.userId.name}}</span>
-                  </div>
-                  <div class="col-4">
-                    <span>
-                      {{getNoOfDays(leave.noOfDays)}}
-                    </span>
-                  </div>
-                  <div class="col-4">
-                    <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
-                  </div>
+    <div *ngIf="approvedLeavesCount == 0" class="dataNotAvalible">
+      <span class="text-center">No Approved Leaves Yet</span>
+    </div>
+
+    <div *ngIf="pendingLeaves.length">
+      <div *ngFor="let leave of pendingLeaves ;let i=index">
+        <div class="card" style="cursor: pointer;">
+          <label for="o{{i}}">
+            <div class="card-content  w-100 aproved_leaves">
+              <div class="row">
+                <div class="col-4">
+                  <span>{{leave.userId.name}}</span>
+                </div>
+                <div class="col-4">
+                  <span>
+                    {{getNoOfDays(leave)}}
+                  </span>
+                </div>
+                <div class="col-4">
+                  <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
                 </div>
               </div>
-            </label>
-            <input class="checker" type="checkbox" id="o{{i}}" hidden>
-            <div class="modal">
-              <div class="modal-body">
-                <div class="modal-content">
-                  <div class="row">
-                    <div class="col-12">
-                      <p class="text-white">Reason :</p>
-                      <div class="reason_text text-white"> {{leave.reason}}</div>
-                    </div>
-                    <div class="col-12">
-                      <p class="text-white">Date :</p>
-                      <div class="reason_text text-white">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
-                      </div>
-                    </div>
-
+            </div>
+          </label>
+          <input class="checker" type="checkbox" id="o{{i}}" hidden>
+          <div class="modal">
+            <div class="modal-body">
+              <div class="modal-content">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="text-white">Reason :</p>
+                    <div class="reason_text text-white"> {{leave.reason}}</div>
                   </div>
-                  <div class="ok_btn text-center mt-3">
-                    <label for="o{{i}}">Ok</label>
+                  <div class="col-12">
+                    <p class="text-white">Date :</p>
+                    <div class="reason_text text-white">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
+                    </div>
+                  </div>
+                  <div class="col-12" *ngIf="leave.extraHours">
+                    <p class="text-white">Compensation :</p>
+                    <div class="reason_text text-white">{{leave.extraHours}}
+                    </div>
                   </div>
                 </div>
-                <div class="close_btn">
-                  <label for="o{{i}}">X</label>
+                <div class="ok_btn text-center mt-3">
+                  <label for="o{{i}}">Ok</label>
                 </div>
+              </div>
+              <div class="close_btn">
+                <label for="o{{i}}">X</label>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div *ngIf="pendingLeavesCount == 0" class="dataNotAvalible">
-        <span class="text-center">No Pending Leaves Yet</span>
-      </div>
+    </div>
+    <div *ngIf="pendingLeavesCount == 0" class="dataNotAvalible">
+      <span class="text-center">No Pending Leaves Yet</span>
     </div>
   </div>
 </ion-content>

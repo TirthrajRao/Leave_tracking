@@ -80,37 +80,44 @@ export class LeaveApplicationComponent implements OnInit {
 
 
   getNoOfDays(days) {
-    // console.log(days);
-    if (days < 0) {
-      return 'You have no leaves..'
+    // console.log("leave details", days);
+    if (days.shortLeave) {
+      if (days.shortLeave == 1) {
+        return days.shortLeave + ' hour';
+      }
+      return days.shortLeave + ' hours';
     } else {
-      const noOfDays = Math.floor(days / 8)
-      // console.log("Days", noOfDays);
-      const noOfhours = days % 8;
-      // console.log("noOfhours", noOfhours);
-      if (!noOfDays && noOfhours) {
-        if (noOfhours > 1) {
-          return noOfhours + ' hours'
-        } else {
-          return noOfhours + ' hour'
-        }
-      } else if (noOfDays && !noOfhours) {
-        if (noOfDays > 1) {
-          return noOfDays + ' Days'
-        } else {
-          return noOfDays + ' Day'
-        }
+      if (days.noOfDays < 0) {
+        return 'You have no leaves..'
       } else {
-        if (noOfDays > 1 && noOfhours > 1) {
-          return noOfDays + ' Days ' + noOfhours + ' hours';
-        } else if (noOfDays == 1 && noOfhours == 1) {
-          return noOfDays + ' Day ' + noOfhours + ' hour';
-        } else if (noOfDays > 1 && noOfhours == 1) {
-          return noOfDays + ' Days ' + noOfhours + ' hour';
+        const noOfDays = Math.floor(days.noOfDays / 8)
+        // console.log("Days", noOfDays);
+        const noOfhours = days.noOfDays % 8;
+        // console.log("noOfhours", noOfhours);
+        if (!noOfDays && noOfhours) {
+          if (noOfhours > 1) {
+            return noOfhours + ' hours'
+          } else {
+            return noOfhours + ' hour'
+          }
+        } else if (noOfDays && !noOfhours) {
+          if (noOfDays > 1) {
+            return noOfDays + ' Days'
+          } else {
+            return noOfDays + ' Day'
+          }
         } else {
-          return noOfDays + ' Day ' + noOfhours + ' hours';
+          if (noOfDays > 1 && noOfhours > 1) {
+            return noOfDays + ' Days ' + noOfhours + ' hours';
+          } else if (noOfDays == 1 && noOfhours == 1) {
+            return noOfDays + ' Day ' + noOfhours + ' hour';
+          } else if (noOfDays > 1 && noOfhours == 1) {
+            return noOfDays + ' Days ' + noOfhours + ' hour';
+          } else {
+            return noOfDays + ' Day ' + noOfhours + ' hours';
+          }
+  
         }
-
       }
     }
   }

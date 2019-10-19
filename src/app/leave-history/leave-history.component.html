@@ -69,13 +69,13 @@
             </div>
             <div class="col-4 text-center">
               <div *ngIf="leave.status == 'Rejected'">
-                <span style="color: #FF0000;">{{leave.noOfDays}}</span>
+                <span style="color: #FF0000;">{{getNoOfDays(leave)}}</span>
               </div>
               <div *ngIf="leave.status == 'pending'">
-                <span style="color: #FFAA00;">{{leave.noOfDays}}</span>
+                <span style="color: #FFAA00;">{{getNoOfDays(leave)}}</span>
               </div>
               <div *ngIf="leave.status == 'Approved'">
-                <span style="color: #3998C5;">{{leave.noOfDays}}</span>
+                <span style="color: #3998C5;">{{getNoOfDays(leave)}}</span>
               </div>
             </div>
             <div class="col-4">
@@ -112,13 +112,13 @@
             </div>
             <div class="col-4 text-center">
               <div *ngIf="leave.status == 'Rejected'">
-                <span style="color: #FF0000;">{{leave.noOfDays}}</span>
+                <span style="color: #FF0000;">{{getNoOfDays(leave)}}</span>
               </div>
               <div *ngIf="leave.status == 'pending'">
-                <span style="color: #FFAA00;">{{leave.noOfDays}}</span>
+                <span style="color: #FFAA00;">{{getNoOfDays(leave)}}</span>
               </div>
               <div *ngIf="leave.status == 'Approved'">
-                <span style="color: #3998C5;">{{leave.noOfDays}}</span>
+                <span style="color: #3998C5;">{{getNoOfDays(leave)}}</span>
               </div>
             </div>
             <div class="col-4">

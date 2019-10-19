@@ -13,8 +13,8 @@ export class LeaveHistoryComponent implements OnInit {
   isMonthLeave = 0;
   isYearLeave = 0;
   monthlyLeaveOfUser: any = [];
-  yearlyLeaveOfUser:any = [];
-  loading:boolean = false;
+  yearlyLeaveOfUser: any = [];
+  loading: boolean = false;
   constructor(public _leaveService: LeaveService) {
     this.monthLeaveForm = new FormGroup({
       month: new FormControl('', [Validators.required]),
@@ -41,9 +41,9 @@ export class LeaveHistoryComponent implements OnInit {
       console.log("data===========>", res);
       this.loading = false;
       this.monthlyLeaveOfUser = res.data;
-      if(res.data.length > 0){
+      if (res.data.length > 0) {
         this.isMonthLeave = 2;
-      }else{
+      } else {
         this.isMonthLeave = 1;
         $('.no-leaves-of-month').css({ 'display': 'block' });
       }
@@ -56,7 +56,7 @@ export class LeaveHistoryComponent implements OnInit {
    *  Get yearly leave history of user
    * @param {Object} data 
    */
-  getYearlyLeaveByUser(data){
+  getYearlyLeaveByUser(data) {
     $('.no-leaves-of-month').css({ 'display': 'none' });
     this.monthlyLeaveOfUser = [];
     this.loading = true;
@@ -65,9 +65,9 @@ export class LeaveHistoryComponent implements OnInit {
       console.log("data===========>", res);
       this.loading = false;
       this.yearlyLeaveOfUser = res.data;
-      if(res.data.length >0){
+      if (res.data.length > 0) {
         this.isYearLeave = 2;
-      }else{
+      } else {
         this.isYearLeave = 1;
         $('.no-leave-of-year').css({ 'display': 'block' })
       }
@@ -77,35 +77,43 @@ export class LeaveHistoryComponent implements OnInit {
     })
   }
   getNoOfDays(days) {
-    // console.log(days);
-    if (days < 0) {
-      return 'You have no leaves..'
+    // console.log("leave details", days);
+    if (days.shortLeave) {
+      if (days.shortLeave == 1) {
+        return days.shortLeave + ' hour';
+      }
+      return days.shortLeave + ' hours';
     } else {
-      const noOfDays = Math.floor(days / 8)
-      // console.log("Days", noOfDays);
-      const noOfhours = days % 8;
-      // console.log("noOfhours", noOfhours);
-      if (!noOfDays && noOfhours) {
-        if (noOfhours > 1) {
-          return noOfhours + ' hours'
-        } else {
-          return noOfhours + ' hour'
-        }
-      } else if (noOfDays && !noOfhours) {
-        if (noOfDays > 1) {
-          return noOfDays + ' Days'
-        } else {
-          return noOfDays + ' Day'
-        }
+      if (days.noOfDays < 0) {
+        return 'You have no leaves..'
       } else {
-        if (noOfDays > 1 && noOfhours > 1) {
-          return noOfDays + ' Days ' + noOfhours + ' hours';
-        } else if (noOfDays == 1 && noOfhours == 1) {
-          return noOfDays + ' Day ' + noOfhours + ' hour';
-        } else if (noOfDays > 1 && noOfhours == 1) {
-          return noOfDays + ' Days ' + noOfhours + ' hour';
+        const noOfDays = Math.floor(days.noOfDays / 8)
+        // console.log("Days", noOfDays);
+        const noOfhours = days.noOfDays % 8;
+        // console.log("noOfhours", noOfhours);
+        if (!noOfDays && noOfhours) {
+          if (noOfhours > 1) {
+            return noOfhours + ' hours'
+          } else {
+            return noOfhours + ' hour'
+          }
+        } else if (noOfDays && !noOfhours) {
+          if (noOfDays > 1) {
+            return noOfDays + ' Days'
+          } else {
+            return noOfDays + ' Day'
+          }
         } else {
-          return noOfDays + ' Day ' + noOfhours + ' hours';
+          if (noOfDays > 1 && noOfhours > 1) {
+            return noOfDays + ' Days ' + noOfhours + ' hours';
+          } else if (noOfDays == 1 && noOfhours == 1) {
+            return noOfDays + ' Day ' + noOfhours + ' hour';
+          } else if (noOfDays > 1 && noOfhours == 1) {
+            return noOfDays + ' Days ' + noOfhours + ' hour';
+          } else {
+            return noOfDays + ' Day ' + noOfhours + ' hours';
+          }
+
         }
       }
     }

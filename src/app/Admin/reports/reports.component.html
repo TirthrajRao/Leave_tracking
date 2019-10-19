@@ -54,7 +54,7 @@
       <img class="loading_img" src="../../assets/images/loader.gif" />
     </div>
     <div *ngIf="monthLeaveReport.length">
-      <div class="leave_details" *ngFor="let leave of monthLeaveReport">
+      <div class="leave_details" *ngFor="let leave of monthLeaveReport; let i=index">
         <div class="card" style="cursor: pointer;">
           <label for="o{{i}}">
             <div class="row">
@@ -85,7 +85,12 @@
                   </div>
                   <div class="col-12">
                     <p class="text-white">No of Days :</p>
-                    <div class="reason_text text-white">  {{getNoOfDays(leave.noOfDays)}}
+                    <div class="reason_text text-white"> {{getNoOfDays(leave)}}
+                    </div>
+                  </div>
+                  <div class="col-12" *ngIf="leave.extraHours">
+                    <p class="text-white">Compensation :</p>
+                    <div class="reason_text text-white">{{leave.extraHours}}
                     </div>
                   </div>
                 </div>
@@ -136,9 +141,14 @@
                   </div>
                   <div class="col-12">
                     <p class="text-white">No of Days :</p>
-                    <div class="reason_text text-white">  {{getNoOfDays(leave.noOfDays)}}
+                    <div class="reason_text text-white"> {{getNoOfDays(leave)}}
                     </div>
                   </div>
+                  <div class="col-12" *ngIf="leave.extraHours">
+                      <p class="text-white">Compensation :</p>
+                      <div class="reason_text text-white">{{leave.extraHours}}
+                      </div>
+                    </div>
                 </div>
                 <div class="ok_btn text-center mt-3">
                   <label for="o{{i}}">Ok</label>

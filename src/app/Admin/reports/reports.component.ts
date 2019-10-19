@@ -76,14 +76,20 @@ export class ReportsComponent implements OnInit {
  * Get number of days
  * @param {String} days 
  */
-  getNoOfDays(days) {
-    // console.log(days);
-    if (days < 0) {
+getNoOfDays(days) {
+  // console.log("leave details", days);
+  if (days.shortLeave) {
+    if (days.shortLeave == 1) {
+      return days.shortLeave + ' hour';
+    }
+    return days.shortLeave + ' hours';
+  } else {
+    if (days.noOfDays < 0) {
       return 'You have no leaves..'
     } else {
-      const noOfDays = Math.floor(days / 8)
+      const noOfDays = Math.floor(days.noOfDays / 8)
       // console.log("Days", noOfDays);
-      const noOfhours = days % 8;
+      const noOfhours = days.noOfDays % 8;
       // console.log("noOfhours", noOfhours);
       if (!noOfDays && noOfhours) {
         if (noOfhours > 1) {
@@ -107,8 +113,10 @@ export class ReportsComponent implements OnInit {
         } else {
           return noOfDays + ' Day ' + noOfhours + ' hours';
         }
+
       }
     }
   }
+}
 
 }
