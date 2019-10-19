@@ -29,15 +29,19 @@
     <div *ngIf="PendingLeaves.length">
       <div *ngFor="let leave of PendingLeaves ;let i=index">
         <div class="card" style="cursor: pointer;">
-          <label for="o{{i}}">
-            <div class="card-content  w-100 pending_leaves">
+         <div class="card-content  w-100 pending_leaves">           
               <div class="row">
                 <div class="col-4">
+                    <label for="o{{i}}">
                   <span class="text-center user_name">{{leave.userId.name}}</span>
+                </label>
                 </div>
                 <div class="col-4">
+                    <label for="o{{i}}">
                   <span class="text-center number_of_days">{{getNoOfDays(leave)}}</span>
+                  </label>
                 </div>
+             
                 <div class="col-4  text-center">
                   <span (click)="leaveApproval(leave._id,'Rejected')" class="float-right check_cross  ml-2 ">
                     <ion-img src="../../assets/images/cancel.png"></ion-img>
@@ -48,8 +52,7 @@
                 </div>
               </div>
             </div>
-          </label>
-          <input class="checker" type="checkbox" id="o{{i}}" hidden>
+                    <input class="checker" type="checkbox" id="o{{i}}" hidden>
           <div class="modal">
             <div class="modal-body">
               <div class="modal-content">

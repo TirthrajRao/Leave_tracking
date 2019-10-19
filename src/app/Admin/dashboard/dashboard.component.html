@@ -110,16 +110,18 @@
     <div *ngIf="approvedLeaves.length">
       <div *ngFor="let leave of approvedLeaves; let i=index">
         <div class="card" style="cursor: pointer;">
-          <label for="o{{i}}">
+            <label for="o{{i}}">
             <div class="card-content  w-100 aproved_leaves">
               <div class="row">
                 <div class="col-4">
                   <span>{{leave.userId.name}}</span>
                 </div>
                 <div class="col-4">
+                   
                   <span>
                     {{getNoOfDays(leave)}}
                   </span>
+                
                 </div>
                 <div class="col-4">
                   <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
