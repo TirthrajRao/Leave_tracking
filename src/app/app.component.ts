@@ -86,7 +86,7 @@ export class AppComponent {
       this.fcm.getToken().then(token => {
         console.log('token======>', token);
         localStorage.setItem('deviceToken', token);
-        console.log("in storage", localStorage.getItem('deviceToken'));
+        console.log("in local sstorage", localStorage.getItem('deviceToken'));
       });
   
       this.fcm.onTokenRefresh().subscribe(token => {
