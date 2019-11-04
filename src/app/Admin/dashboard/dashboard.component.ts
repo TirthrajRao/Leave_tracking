@@ -44,6 +44,13 @@ export class DashboardComponent implements OnInit {
       $(".nav-item  a").removeClass("active");
       $(this).addClass("active");
     });
+
+    $(".modal").on("show", function () {
+      $("body").addClass("modal-open");
+    }).on("hidden", function () {
+      $("body").removeClass("modal-open")
+    });
+
   }
 
   /**

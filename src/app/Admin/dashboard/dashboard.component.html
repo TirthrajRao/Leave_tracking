@@ -106,29 +106,29 @@
         <div *ngIf="todayLeave" class="dataNotAvalible text-center mt-4">
             <span>Everyone is Present</span>
         </div>
-
         <div *ngIf="approvedLeaves.length">
             <div *ngFor="let leave of approvedLeaves; let i=index">
-                <div class="card" style="cursor: pointer;">
+                <div class="card" style="cursor: pointer;" data-toggle="modal" data-target="#myModal">
                     <label for="o{{i}}">
-            <div class="card-content  w-100 aproved_leaves">
-              <div class="row">
-                <div class="col-4">
-                  <span>{{leave.userId.name}}</span>
-                </div>
-                <div class="col-4">
+                    <div class="card-content  w-100 aproved_leaves">
+                        <div class="row">
+                            <div class="col-4">
+                                <span>{{leave.userId.name}}</span>
+                            </div>
+                            <div class="col-4">
 
-                  <span>
+                                <span>
                     {{getNoOfDays(leave)}}
                   </span>
 
-                </div>
-                <div class="col-4">
-                  <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
-                </div>
-              </div>
-            </div>
-          </label>
+                            </div>
+                            <div class="col-4">
+                                <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    </label>
                     <input class="checker" type="checkbox" id="o{{i}}" hidden>
                     <div class="modal">
                         <div class="modal-body">
