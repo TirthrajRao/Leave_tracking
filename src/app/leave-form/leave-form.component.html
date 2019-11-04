@@ -58,9 +58,9 @@
                     </ion-item>
                 </div>
             </div>
-            <div class="add_leave_btn text-center text-white">
-                <button type="submit" (click)="applyLeave(leaveForm.value)" [disabled]="(this.leaveForm.invalid || !isValue)  || isDisable  ">
-          Submit</button>
+            <div class="text-center text-white">
+                <ion-button type="submit" (click)="applyLeave(leaveForm.value)" [disabled]="(this.leaveForm.invalid || !isValue)  || isDisable  ">
+                    Submit</ion-button>
             </div>
         </form>
     </div>

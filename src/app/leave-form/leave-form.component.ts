@@ -39,7 +39,6 @@ export class LeaveFormComponent implements OnInit {
     this.isDisable = true
     console.log("leave application details", this.leaveForm.value)
     console.log('data===========>', data);
-    console.log('data============>', data);
     if (this.leaveForm.invalid) {
       return;
     }
@@ -49,6 +48,7 @@ export class LeaveFormComponent implements OnInit {
       this._toastService.presentToast(res.message);
       this.leaveForm.reset();
       this.isDisable = false;
+      this.isValue = false;
     }, err => {
       console.log("==========>", err);
       this.isDisable = false;
@@ -75,7 +75,7 @@ export class LeaveFormComponent implements OnInit {
       element.value = 3
     } else if (e < 3 && e > 1) {
       const element = this.elementRef.nativeElement.querySelector('#input2');
-      element.value = e
+      // element.value = e
     } else if (e == "") {
       const element = this.elementRef.nativeElement.querySelector('#input2');
       element.value = ''
