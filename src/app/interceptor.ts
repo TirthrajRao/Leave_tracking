@@ -45,8 +45,8 @@ export class MyInterceptor implements HttpInterceptor {
                     // console.log("error in interceptor", errorMessage);
                     if (error.status === 401) {
                         localStorage.removeItem('accessToken');
+                        this.route.navigate(['/login']);
                         this._toastService.presentToast(errorMessage.message);
-                        this.route.navigate(['login']);
                     }
                     return throwError(error);
                 })

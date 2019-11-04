@@ -3,6 +3,7 @@ import { ModalController, Events } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { config } from '../config';
 import { ToastService } from '../services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfilePage implements OnInit {
   urls;
   loading: boolean = false;
 
-  constructor(public modalController: ModalController, public _userService: UserService, public _toastService: ToastService, public events1: Events) { }
+  constructor(public route: Router,public modalController: ModalController, public _userService: UserService, public _toastService: ToastService, public events1: Events) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -35,7 +36,7 @@ export class ProfilePage implements OnInit {
       this.userDetail = res.data;
       this.loading = false;
       console.log("this.userDetails login", this.userDetail);
-     
+  this.route.navigate(['login'])
       // this.UserDetail.dob = this.UserDetail.dob.split("T")[0];
     }, err => {
       console.log(err);

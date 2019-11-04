@@ -64,13 +64,13 @@
             <div *ngFor="let user of todaysLeave; let i=index">
                 <div class="card" style="cursor:pointer">
                     <label for="o{{i}}">
-            <div class="card-content w-100">
-              <div class="absent_user_name">
-                <a (click)="presentAlert(user)" href="javascript:void(0);" class="float-left">{{user.userId.name}}</a>
-                <a class="float-right">{{user.date.date}}/{{user.date.month}}/{{user.date.year}}</a>
-              </div>
-            </div>
-          </label>
+                        <div class="card-content w-100">
+                            <div class="absent_user_name">
+                                <a class="float-left">{{user.userId.name}}</a>
+                                <a class="float-right">{{user.date.date}}/{{user.date.month}}/{{user.date.year}}</a>
+                            </div>
+                        </div>
+                    </label>
                     <input class="checker" type="checkbox" id="o{{i}}" hidden>
                     <div class="modal">
                         <div class="modal-body">
@@ -82,7 +82,8 @@
                                     </div>
                                     <div class="col-12">
                                         <p class="text-white">Date :</p>
-                                        <div class="reason_text text-white">{{user.date.date}}/{{user.date.month}}/{{user.date.year}}
+                                        <div class="reason_text text-white">
+                                            {{user.date.date}}/{{user.date.month}}/{{user.date.year}}
                                         </div>
                                     </div>
                                     <div class="col-12" *ngIf="user.extraHours">
@@ -110,23 +111,23 @@
             <div *ngFor="let leave of approvedLeaves; let i=index">
                 <div class="card" style="cursor: pointer;" data-toggle="modal" data-target="#myModal">
                     <label for="o{{i}}">
-                    <div class="card-content  w-100 aproved_leaves">
-                        <div class="row">
-                            <div class="col-4">
-                                <span>{{leave.userId.name}}</span>
-                            </div>
-                            <div class="col-4">
+                        <div class="card-content  w-100 aproved_leaves">
+                            <div class="row">
+                                <div class="col-4">
+                                    <span>{{leave.userId.name}}</span>
+                                </div>
+                                <div class="col-4">
 
-                                <span>
-                    {{getNoOfDays(leave)}}
-                  </span>
+                                    <span>
+                                        {{getNoOfDays(leave)}}
+                                    </span>
 
-                            </div>
-                            <div class="col-4">
-                                <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
+                                </div>
+                                <div class="col-4">
+                                    <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                     </label>
                     <input class="checker" type="checkbox" id="o{{i}}" hidden>
@@ -140,7 +141,8 @@
                                     </div>
                                     <div class="col-12">
                                         <p class="text-white">Date :</p>
-                                        <div class="reason_text text-white">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
+                                        <div class="reason_text text-white">
+                                            {{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -173,22 +175,22 @@
             <div *ngFor="let leave of pendingLeaves ;let i=index">
                 <div class="card" style="cursor: pointer;">
                     <label for="o{{i}}">
-            <div class="card-content  w-100 aproved_leaves">
-              <div class="row">
-                <div class="col-4">
-                  <span>{{leave.userId.name}}</span>
-                </div>
-                <div class="col-4">
-                  <span>
-                    {{getNoOfDays(leave)}}
-                  </span>
-                </div>
-                <div class="col-4">
-                  <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
-                </div>
-              </div>
-            </div>
-          </label>
+                        <div class="card-content  w-100 aproved_leaves">
+                            <div class="row">
+                                <div class="col-4">
+                                    <span>{{leave.userId.name}}</span>
+                                </div>
+                                <div class="col-4">
+                                    <span>
+                                        {{getNoOfDays(leave)}}
+                                    </span>
+                                </div>
+                                <div class="col-4">
+                                    <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
                     <input class="checker" type="checkbox" id="o{{i}}" hidden>
                     <div class="modal">
                         <div class="modal-body">
@@ -200,7 +202,8 @@
                                     </div>
                                     <div class="col-12">
                                         <p class="text-white">Date :</p>
-                                        <div class="reason_text text-white">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
+                                        <div class="reason_text text-white">
+                                            {{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}
                                         </div>
                                     </div>
                                     <div class="col-12" *ngIf="leave.extraHours">
