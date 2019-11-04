@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController,Events } from '@ionic/angular';
+import { ModalController, Events } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { config } from '../config';
-import {ToastService} from '../services/toast.service';
+import { ToastService } from '../services/toast.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -17,9 +18,9 @@ export class ProfilePage implements OnInit {
   imagePath;
   imgURL;
   urls;
-  loading:boolean = false;
+  loading: boolean = false;
 
-  constructor(public modalController: ModalController, public _userService: UserService,public _toastService: ToastService,public events1: Events) { }
+  constructor(public modalController: ModalController, public _userService: UserService, public _toastService: ToastService, public events1: Events) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -34,10 +35,11 @@ export class ProfilePage implements OnInit {
       this.userDetail = res.data;
       this.loading = false;
       console.log("this.userDetails login", this.userDetail);
+     
       // this.UserDetail.dob = this.UserDetail.dob.split("T")[0];
     }, err => {
       console.log(err);
-      this.loading = false; 
+      this.loading = false;
     })
   }
 
@@ -46,7 +48,7 @@ export class ProfilePage implements OnInit {
    * @param {object} file 
    */
   fileSelected(event) {
-    console.log("===============",event.target.files)
+    console.log("===============", event.target.files)
     this.urls = "";
     this.files = event.target.files[0];
     // if (this.files) {
@@ -58,14 +60,15 @@ export class ProfilePage implements OnInit {
     //   reader.readAsDataURL(this.files);
     // }
     // console.log("url=>",this.urls)
-    this._userService.updateProfile(this.files).subscribe((res:any)=>{
-      console.log("res=======>",res);
-      this._toastService.presentToast(res.message);
+    this._userService.updateProfile(this.files).subscribe((res: any) => {
+      console.log("res=======>", res);
+      this._toastService.presentToast(res.message)
       this.urls = "";
       this.userDetail.profilePhoto = res.data.profilePhoto;
-      this.events1.publish('profile',res.data.profilePhoto);
-    },err=>{
-      console.log("err=>>>>>>>>>>>>",err);
+      this.events1.publish('profile', res.data.profilePhoto);
+    }, err => {
+      console.log("err=>>>>>>>>>>>>", err);
+      this._toastService.presentToast("There are some error....");
       this.urls = "";
     })
   }

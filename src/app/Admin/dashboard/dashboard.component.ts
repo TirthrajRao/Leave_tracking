@@ -44,12 +44,13 @@ export class DashboardComponent implements OnInit {
       $(".nav-item  a").removeClass("active");
       $(this).addClass("active");
     });
+
     $(".modal").on("show", function () {
-      $("body").css("over-flow", 'hidden');
-   }).on("hidden", function () {
-      $("body").css("over-flow", 'auto')
-   });
-    
+      $("body").addClass("modal-open");
+    }).on("hidden", function () {
+      $("body").removeClass("modal-open")
+    });
+
   }
 
   /**
@@ -76,9 +77,6 @@ export class DashboardComponent implements OnInit {
     console.log("today not present user")
     this._leaveService.todayNotPresentUser().subscribe((res: any) => {
       console.log("not present user", res)
-      $('.step_one').css({ 'display': 'block' });
-      $('.step_two').css({ 'display': 'none' })
-      $('.step_three').css({ 'display': 'none' })
       this.todaysLeave = res.data;
       this.todayLeavesCount = res.data.length;
       this.approvedLeave = false;
@@ -111,7 +109,7 @@ export class DashboardComponent implements OnInit {
         this.approvedLeave = true;
       }
       this.loading = false;
-      console.log("approved leaves", res, this.approvedLeaves, this.approvedLeavesCount);
+      console.log("approved leaves===", res, this.approvedLeaves, this.approvedLeavesCount);
     }, err => {
       console.log("err");
       this.loading = false;

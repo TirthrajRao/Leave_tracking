@@ -3,6 +3,7 @@ import { LeaveService } from '../../services/leave.service';
 import { ToastService } from '../../services/toast.service';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-leave-application',
   templateUrl: './leave-application.component.html',
@@ -72,6 +73,7 @@ export class LeaveApplicationComponent implements OnInit {
       } else {
         this._toastService.presentToast('Leave Rejected')
       }
+      console.log("pending leaves============>>>", this.PendingLeaves);
       this.getPendingLeaves();
     }, err => {
       console.log(err);
@@ -116,7 +118,7 @@ export class LeaveApplicationComponent implements OnInit {
           } else {
             return noOfDays + ' Day ' + noOfhours + ' hours';
           }
-  
+
         }
       }
     }

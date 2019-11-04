@@ -35,7 +35,9 @@ export class HomePage {
     public events2: Events
   ) {
     this.events2.subscribe('profile', (data) => {
-      this.UserDetail.profilePhoto = data
+      console.log("data================>",data)
+      this.UserDetail.profilePhoto = data;
+      console.log("profile photo updated",this.UserDetail);
     });
     this._userService.currentUser.subscribe(x => this.currentUser = x);
     console.log("this.curruntUserRole====>", this.currentUserRole);
@@ -107,7 +109,7 @@ export class HomePage {
   getUserDetail() {
     this._userService.getUserDetail().subscribe((res: any) => {
       this.UserDetail = res.data;
-      console.log("===", this.UserDetail)
+      console.log("in home page===", this.UserDetail)
 
     }, err => {
       console.log(err);

@@ -26,6 +26,7 @@ export class NotificationComponent implements OnInit {
     this._userService.getNotification().subscribe((data: any) => {
       this.notificationDetails = data.data;
       this.notificationDetailsCount = data.data.length;
+      this.loading = false;
       console.log("notification data", this.notificationDetails);
       this.loading = false;
       // this.scheduleNotification(this.notificationDetails)
