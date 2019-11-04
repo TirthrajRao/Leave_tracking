@@ -26,6 +26,9 @@ export class DashboardComponent implements OnInit {
   leaveReason;
   loading: boolean = false;
   todayDate;
+  todayLeave: boolean = false;
+  approvedLeave:boolean = false;
+  pendingLeave:boolean = false;
   constructor(public _userService: UserService,
     public _leaveService: LeaveService,
     public alertController: AlertController) { }
@@ -41,6 +44,12 @@ export class DashboardComponent implements OnInit {
       $(".nav-item  a").removeClass("active");
       $(this).addClass("active");
     });
+    $(".modal").on("show", function () {
+      $("body").css("over-flow", 'hidden');
+   }).on("hidden", function () {
+      $("body").css("over-flow", 'auto')
+   });
+    
   }
 
   /**
@@ -72,6 +81,11 @@ export class DashboardComponent implements OnInit {
       $('.step_three').css({ 'display': 'none' })
       this.todaysLeave = res.data;
       this.todayLeavesCount = res.data.length;
+      this.approvedLeave = false;
+      this.approvedLeave = false;
+      if (!this.todayLeavesCount) {
+        this.todayLeave = true;
+      }
       this.loading = false;
       console.log("not present user=======>", res, this.todaysLeave, this.todayLeavesCount);
     }, err => {
@@ -91,10 +105,11 @@ export class DashboardComponent implements OnInit {
     this._leaveService.getApprovedLeaves().subscribe((res: any) => {
       this.approvedLeaves = res.data;
       this.approvedLeavesCount = res.data.length;
-      $('.step_two').css({ 'display': 'block' });
-      $('.step_one').css({ 'display': 'none' });
-      $('.step_three').css({ 'display': 'none' })
-      // $('.step_one').css({ 'display': 'none' });
+      this.todayLeave = false;
+      this.pendingLeave = false;
+      if(!this.approvedLeavesCount){
+        this.approvedLeave = true;
+      }
       this.loading = false;
       console.log("approved leaves", res, this.approvedLeaves, this.approvedLeavesCount);
     }, err => {
@@ -112,12 +127,14 @@ export class DashboardComponent implements OnInit {
     this.approvedLeaves = [];
     this.todaysLeave = [];
     this._leaveService.getPendingLeaves().subscribe((res: any) => {
-
-      $('.step_two').css({ 'display': 'none' });
-      $('.step_one').css({ 'display': 'none' });
-      $('.step_three').css({ 'display': 'block' })
       this.pendingLeaves = res.data;
       this.pendingLeavesCount = res.data.length;
+      this.loading = false;
+      this.todayLeave = false;
+      this.approvedLeave = false;
+      if(!this.pendingLeavesCount){
+        this.pendingLeave = true
+      }
       this.loading = false;
       console.log("Pending leaves", res, this.pendingLeaves, this.pendingLeavesCount);
     }, err => {
@@ -188,4 +205,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
+  openModal(){
+    console.log("modal is open=============")
+  }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController,Events } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { config } from '../config';
-
+import {ToastService} from '../services/toast.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -19,7 +19,7 @@ export class ProfilePage implements OnInit {
   urls;
   loading:boolean = false;
 
-  constructor(public modalController: ModalController, public _userService: UserService,public events1: Events) { }
+  constructor(public modalController: ModalController, public _userService: UserService,public _toastService: ToastService,public events1: Events) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -60,6 +60,7 @@ export class ProfilePage implements OnInit {
     // console.log("url=>",this.urls)
     this._userService.updateProfile(this.files).subscribe((res:any)=>{
       console.log("res=======>",res);
+      this._toastService.presentToast(res.message);
       this.urls = "";
       this.userDetail.profilePhoto = res.data.profilePhoto;
       this.events1.publish('profile',res.data.profilePhoto);

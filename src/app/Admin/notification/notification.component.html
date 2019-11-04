@@ -22,6 +22,9 @@
 </ion-header>
 
 <ion-content>
+    <div class="loader" *ngIf="loading">
+        <img class="loading_img" src="../../assets/images/loader.gif" />
+    </div>
   <div class="all_notification" *ngFor="let item of notificationDetails">
     <div class="card">
       <div class="card-content ">

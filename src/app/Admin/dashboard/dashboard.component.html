@@ -27,7 +27,7 @@
   </div>
 </ion-header>
 
-<ion-content>
+<ion-content style="z-index: 999">
 
   <div class="all_content">
     <div class="title_text">
@@ -63,7 +63,7 @@
     <div *ngIf="todaysLeave.length">
       <div *ngFor="let user of todaysLeave; let i=index">
         <div class="card" style="cursor:pointer">
-          <label for="o{{i}}">
+          <label for="o{{i}}" (click)="openModal()">
             <div class="card-content w-100">
               <div class="absent_user_name">
                 <a (click)="presentAlert(user)" href="javascript:void(0);" class="float-left">{{user.userId.name}}</a>
@@ -71,7 +71,7 @@
               </div>
             </div>
           </label>
-          <input class="checker" type="checkbox" id="o{{i}}" hidden>
+          <input class="checker" type="checkbox" id="o{{i}}" hidden >
           <div class="modal">
             <div class="modal-body">
               <div class="modal-content">
@@ -103,7 +103,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="todayLeavesCount == 0" class="dataNotAvalible text-center mt-4">
+    <div *ngIf="todayLeave" class="dataNotAvalible text-center mt-4" >
       <span>Everyone is Present</span>
     </div>
 
@@ -117,11 +117,9 @@
                   <span>{{leave.userId.name}}</span>
                 </div>
                 <div class="col-4">
-                   
                   <span>
                     {{getNoOfDays(leave)}}
                   </span>
-                
                 </div>
                 <div class="col-4">
                   <span>{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</span>
@@ -165,10 +163,11 @@
         </div>
       </div>
     </div>
-    <div *ngIf="approvedLeavesCount == 0" class="dataNotAvalible">
+    <div *ngIf="approvedLeave" class="dataNotAvalible text-center mt-4">
       <span class="text-center">No Approved Leaves Yet</span>
     </div>
 
+    
     <div *ngIf="pendingLeaves.length">
       <div *ngFor="let leave of pendingLeaves ;let i=index">
         <div class="card" style="cursor: pointer;">
@@ -221,7 +220,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="pendingLeavesCount == 0" class="dataNotAvalible">
+    <div *ngIf="pendingLeave" class="dataNotAvalible text-center mt-4">
       <span class="text-center">No Pending Leaves Yet</span>
     </div>
   </div>
