@@ -45,12 +45,6 @@ export class DashboardComponent implements OnInit {
       $(this).addClass("active");
     });
 
-    $(".modal").on("show", function () {
-      $("body").addClass("modal-open");
-    }).on("hidden", function () {
-      $("body").removeClass("modal-open")
-    });
-
   }
 
   /**
@@ -199,6 +193,18 @@ export class DashboardComponent implements OnInit {
 
         }
       }
+    }
+  }
+
+/**
+ * open modal of leave description
+ */
+  openModal(){
+    console.log("calling=======================================>");
+    if($('ion-content').hasClass('no-scroll')){
+      $('ion-content').removeClass('no-scroll');
+    } else{
+      $('ion-content').addClass('no-scroll');
     }
   }
 

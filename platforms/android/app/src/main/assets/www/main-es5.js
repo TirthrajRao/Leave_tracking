@@ -968,8 +968,8 @@ var MyInterceptor = /** @class */ (function () {
                 // console.log("error in interceptor", errorMessage);
                 if (error.status === 401) {
                     localStorage.removeItem('accessToken');
+                    _this.route.navigate(['/login']);
                     _this._toastService.presentToast(errorMessage.message);
-                    _this.route.navigate(['login']);
                 }
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error);
             }));

@@ -290,12 +290,10 @@ label {
     }
 }
 
-body {
-    .modal-open {
-        overflow: hidden;
-    }
-}
-
 .alertCustomCss {
     background-color: $app_bar_color;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
