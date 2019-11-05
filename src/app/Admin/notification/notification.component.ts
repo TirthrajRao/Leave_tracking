@@ -28,6 +28,7 @@ export class NotificationComponent implements OnInit {
       this.notificationDetailsCount = data.data.length;
       this.loading = false;
       console.log("notification data", this.notificationDetails);
+      this.loading = false;
       // this.scheduleNotification(this.notificationDetails)
     }, err => {
       console.log(err)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaveService } from '../../services/leave.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare var $: any;
+
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -118,5 +119,18 @@ getNoOfDays(days) {
     }
   }
 }
+
+/**
+   * open modal of leave description
+   */
+  openModal() {
+    if ($('body').hasClass('no-scroll')) {
+      $('body').removeClass('no-scroll');
+      $('ion-content').removeAttr('style');
+    } else {
+      $('body').addClass('no-scroll');
+      $('ion-content').css({'--overflow':'hidden'});
+    }
+  }
 
 }

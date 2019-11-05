@@ -1124,7 +1124,7 @@ var LoginComponent = /** @class */ (function () {
             _this.router.navigate(['home']);
             // }, 300);
         }, function (err) {
-            console.log('err in login ============>', err);
+            console.log('err in login ============>', err, err.error.message, err.error);
             _this._toastService.presentToast(err.error.message);
             _this.isDisable = false;
             _this.loading = false;

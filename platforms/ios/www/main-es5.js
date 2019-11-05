@@ -823,9 +823,9 @@ var AppModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 var ip = 'https://leavetracking.raoinformationtechnology.com:9000/';
-// const ip = 'http://192.168.1.73:3000/';
+// const ip = 'https://192.168.1.73:3000/';
 var baseUrl = ip;
-// const baseMediaUrl = 'http://192.168.1.73/leaveTracking-master/uploads/';
+// const baseMediaUrl = 'https://192.168.1.73/leaveTracking-master/uploads/';
 // const baseMediaUrl = ip + "uploads/";
 var baseMediaUrl = 'https://leavetracking.raoinformationtechnology.com:9000/';
 var config = {
@@ -968,8 +968,8 @@ var MyInterceptor = /** @class */ (function () {
                 // console.log("error in interceptor", errorMessage);
                 if (error.status === 401) {
                     localStorage.removeItem('accessToken');
+                    _this.route.navigate(['/login']);
                     _this._toastService.presentToast(errorMessage.message);
-                    _this.route.navigate(['login']);
                 }
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error);
             }));
@@ -1124,7 +1124,7 @@ var LoginComponent = /** @class */ (function () {
             _this.router.navigate(['home']);
             // }, 300);
         }, function (err) {
-            console.log('err in login ============>', err);
+            console.log('err in login ============>', err, err.error.message, err.error);
             _this._toastService.presentToast(err.error.message);
             _this.isDisable = false;
             _this.loading = false;

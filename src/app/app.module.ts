@@ -18,7 +18,6 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm/ngx';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { LeaveService } from '../../services/leave.service';
 import { config } from '../../config';
 import { AlertController } from '@ionic/angular';
+declare var $: any;
 
 @Component({
   selector: 'app-single-usre',
@@ -122,6 +123,19 @@ export class SingleUsreComponent implements OnInit {
 
         }
       }
+    }
+  }
+
+  /**
+   * open modal of leave description
+   */
+  openModal() {
+    if ($('body').hasClass('no-scroll')) {
+      $('body').removeClass('no-scroll');
+      $('ion-content').removeAttr('style');
+    } else {
+      $('body').addClass('no-scroll');
+      $('ion-content').css({'--overflow':'hidden'});
     }
   }
 }

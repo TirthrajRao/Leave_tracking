@@ -9,6 +9,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ToastService } from './services/toast.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -47,18 +48,18 @@ export class AppComponent {
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });
-    
-    this.initializeApp()
+
+    this.initializeApp();
+
   }
 
   ngOnInit() {
+
     this.platform.backButton.subscribe(async () => {
       if (this.router.isActive('/login', true) && this.router.url === '/login') {
         navigator['app'].exitApp();
       }
     });
-
-
     console.log("admin user role", this.currentUserRole);
   }
 
@@ -88,7 +89,7 @@ export class AppComponent {
         localStorage.setItem('deviceToken', token);
         console.log("in local sstorage", localStorage.getItem('deviceToken'));
       });
-  
+
       this.fcm.onTokenRefresh().subscribe(token => {
         console.log(token);
       });

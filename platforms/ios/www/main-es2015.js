@@ -804,9 +804,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 const ip = 'https://leavetracking.raoinformationtechnology.com:9000/';
-// const ip = 'http://192.168.1.73:3000/';
+// const ip = 'https://192.168.1.73:3000/';
 const baseUrl = ip;
-// const baseMediaUrl = 'http://192.168.1.73/leaveTracking-master/uploads/';
+// const baseMediaUrl = 'https://192.168.1.73/leaveTracking-master/uploads/';
 // const baseMediaUrl = ip + "uploads/";
 const baseMediaUrl = 'https://leavetracking.raoinformationtechnology.com:9000/';
 const config = {
@@ -945,8 +945,8 @@ let MyInterceptor = class MyInterceptor {
                 // console.log("error in interceptor", errorMessage);
                 if (error.status === 401) {
                     localStorage.removeItem('accessToken');
+                    this.route.navigate(['/login']);
                     this._toastService.presentToast(errorMessage.message);
-                    this.route.navigate(['login']);
                 }
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error);
             }));
@@ -1098,7 +1098,7 @@ let LoginComponent = class LoginComponent {
             this.router.navigate(['home']);
             // }, 300);
         }, err => {
-            console.log('err in login ============>', err);
+            console.log('err in login ============>', err, err.error.message, err.error);
             this._toastService.presentToast(err.error.message);
             this.isDisable = false;
             this.loading = false;
