@@ -229,7 +229,8 @@ label {
     left: 0;
     padding: 25px;
     background-color: rgba(0, 0, 0, .4);
-    z-index: 1111;
+    z-index: 9999;
+    pointer-events: auto;
 }
 
 .modal-body {
@@ -292,8 +293,4 @@ label {
 
 .alertCustomCss {
     background-color: $app_bar_color;
-}
-
-.no-scroll {
-    overflow: hidden;
 }

@@ -200,11 +200,11 @@ export class DashboardComponent implements OnInit {
  * open modal of leave description
  */
   openModal(){
-    console.log("calling=======================================>");
-    if($('ion-content').hasClass('no-scroll')){
-      $('ion-content').removeClass('no-scroll');
+    console.log("calling=======================================>",$('body').hasClass('no-scroll'));
+    if($('body').hasClass('no-scroll')){
+      $('body').removeClass('no-scroll');
     } else{
-      $('ion-content').addClass('no-scroll');
+      $('body').addClass('no-scroll');
     }
   }
 

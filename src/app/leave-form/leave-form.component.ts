@@ -18,6 +18,7 @@ export class LeaveFormComponent implements OnInit {
   noOfDays = false;
   shortLeave = false
   isValue: Boolean = false;
+  nextYear;
 
   constructor(public _leaveService: LeaveService, private elementRef: ElementRef, public _toastService: ToastService, private localNotifications: LocalNotifications) {
     this.leaveForm = new FormGroup({
@@ -30,6 +31,11 @@ export class LeaveFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("curruntdate====>",this.curruntDate);
+    this.nextYear = this.curruntDate.split("-")[0];
+    this.nextYear = this.nextYear++;
+    this.nextYear = this.nextYear+ +1;
+    console.log("nextyear=====>",this.nextYear)
   }
   /**
    * Apply leave
