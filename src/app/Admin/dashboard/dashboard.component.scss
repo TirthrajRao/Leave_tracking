@@ -229,9 +229,9 @@ label {
     left: 0;
     padding: 25px;
     background-color: rgba(0, 0, 0, .4);
-    z-index: 1111;
+    z-index: 9999;
+    overflow: hidden;
 }
-
 .modal-body {
     width: 200px;
     background-color: $app_bar_color;
@@ -287,12 +287,6 @@ label {
         right: -10px;
         text-align: center;
         line-height: 25px;
-    }
-}
-
-body {
-    .modal-open {
-        overflow: hidden;
     }
 }
 

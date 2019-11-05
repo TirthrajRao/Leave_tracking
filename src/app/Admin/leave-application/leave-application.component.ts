@@ -3,7 +3,7 @@ import { LeaveService } from '../../services/leave.service';
 import { ToastService } from '../../services/toast.service';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AlertController } from '@ionic/angular';
-
+declare const $: any;
 @Component({
   selector: 'app-leave-application',
   templateUrl: './leave-application.component.html',
@@ -123,5 +123,16 @@ export class LeaveApplicationComponent implements OnInit {
       }
     }
   }
-
+  /**
+     * open modal of leave description
+     */
+  openModal() {
+    if ($('body').hasClass('no-scroll')) {
+      $('body').removeClass('no-scroll');
+      $('ion-content').removeAttr('style');
+    } else {
+      $('body').addClass('no-scroll');
+      $('ion-content').css({ '--overflow': 'hidden' });
+    }
+  }
 }

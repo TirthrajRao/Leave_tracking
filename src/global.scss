@@ -25,28 +25,24 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-// header css start
 .toast-color{
-    --background:#01023F;
-    --color:white !important; 
+   --background:#01023F;
+   --color:white !important; 
  }
- //loader css
  .loader{
-    // position: relative;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    // background-color: #fff;
-    }
-    .loading_img {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        left: 0px;
-        bottom: 0;
-        margin: auto;
-           }
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   width: 100vw;
+   height: 100vh;
+   z-index: 9999;
+}
+.loading_img {
+   position: absolute;
+   top: 0px;
+   right: 0px;
+   left: 0px;
+   bottom: 0;
+   margin: auto;
+}

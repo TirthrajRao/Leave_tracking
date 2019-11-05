@@ -3,7 +3,6 @@ import { UserService } from '../../services/user.service';
 import { LeaveService } from '../../services/leave.service';
 import { config } from '../../config';
 import { AlertController } from '@ionic/angular';
-// import { $ } from 'protractor';
 declare var $: any;
 
 
@@ -27,8 +26,8 @@ export class DashboardComponent implements OnInit {
   loading: boolean = false;
   todayDate;
   todayLeave: boolean = false;
-  approvedLeave:boolean = false;
-  pendingLeave:boolean = false;
+  approvedLeave: boolean = false;
+  pendingLeave: boolean = false;
   constructor(public _userService: UserService,
     public _leaveService: LeaveService,
     public alertController: AlertController) { }
@@ -43,12 +42,6 @@ export class DashboardComponent implements OnInit {
     $(".nav-item  a ").click(function () {
       $(".nav-item  a").removeClass("active");
       $(this).addClass("active");
-    });
-
-    $(".modal").on("show", function () {
-      $("body").addClass("modal-open");
-    }).on("hidden", function () {
-      $("body").removeClass("modal-open")
     });
 
   }
@@ -105,7 +98,7 @@ export class DashboardComponent implements OnInit {
       this.approvedLeavesCount = res.data.length;
       this.todayLeave = false;
       this.pendingLeave = false;
-      if(!this.approvedLeavesCount){
+      if (!this.approvedLeavesCount) {
         this.approvedLeave = true;
       }
       this.loading = false;
@@ -130,7 +123,7 @@ export class DashboardComponent implements OnInit {
       this.loading = false;
       this.todayLeave = false;
       this.approvedLeave = false;
-      if(!this.pendingLeavesCount){
+      if (!this.pendingLeavesCount) {
         this.pendingLeave = true
       }
       this.loading = false;
@@ -203,8 +196,17 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
-  openModal(){
-    console.log("modal is open=============")
+  /**
+   * open modal of leave description
+   */
+  openModal() {
+    if ($('body').hasClass('no-scroll')) {
+      $('body').removeClass('no-scroll');
+      $('ion-content').removeAttr('style');
+    } else {
+      $('body').addClass('no-scroll');
+      $('ion-content').css({'--overflow':'hidden'});
+    }
   }
+
 }
