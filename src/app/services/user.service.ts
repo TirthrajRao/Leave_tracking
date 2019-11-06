@@ -68,7 +68,9 @@ export class UserService {
   logOut() {
     return this.http.get(config.baseApiUrl + "api/logout").pipe(
       map(res => {
-        localStorage.clear();
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('designation')
+        // localStorage.clear();
         this.currentUserSubject.next(null);
         return res;
       }))

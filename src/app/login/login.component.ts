@@ -64,16 +64,19 @@ export class LoginComponent implements OnInit {
       }
 
       // Notification
-      this.fcm.getToken().then(token => {
-        console.log('token======>', token);
-        localStorage.setItem('deviceToken', token);
-        console.log("in storage", localStorage.getItem('deviceToken'));
-      });
-
-      this.fcm.onTokenRefresh().subscribe(token => {
-        console.log(token);
-      });
+      if(!localStorage.getItem('deviceToken')){
+        this.fcm.getToken().then(token => {
+          console.log('token======>', token);
+          localStorage.setItem('deviceToken', token);
+          console.log("in storage", localStorage.getItem('deviceToken'));
+        });
+  
+        this.fcm.onTokenRefresh().subscribe(token => {
+          console.log(token);
+        });
+      }
     });
+     
   }
 
 
