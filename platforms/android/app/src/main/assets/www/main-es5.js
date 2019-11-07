@@ -608,6 +608,7 @@ var AppComponent = /** @class */ (function () {
         this.localNotifications = localNotifications;
         this.navCtrl = navCtrl;
         this.currentUserRole = JSON.parse(localStorage.getItem('designation'));
+        this.count = 1;
         this.appPages = [
             {
                 title: 'Home',
@@ -668,17 +669,22 @@ var AppComponent = /** @class */ (function () {
             });
             _this.fcm.onNotification().subscribe(function (data) {
                 console.log("sauthi important time che taro bhura=====>", data);
+                data['id'] = _this.count;
+                _this.count = _this.count + +1;
+                console.log("count=====>", _this.count, data);
                 if (data.wasTapped) {
                     console.log('Received in background', data.wasTapped);
                     _this.router.navigate([data.redirectTo]);
                 }
                 else {
                     // this.router.navigate(['/home/leave-application'])
-                    _this.router.navigate([data.redirectTo]);
+                    if (data.redirectTo) {
+                        _this.router.navigate([data.redirectTo]);
+                    }
                     console.log('Received in foreground');
                     _this._toastService.presentToast(data.body);
                     _this.localNotifications.schedule({
-                        id: 1,
+                        id: data.id,
                         title: 'Leave Application',
                         text: data.body,
                         foreground: true // Show the notification while app is open

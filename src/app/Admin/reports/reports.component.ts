@@ -16,6 +16,8 @@ export class ReportsComponent implements OnInit {
   monthLeaveReport: any = [];
   yearLeaveReport: any = [];
   loading: boolean = false;
+  curruntDate: string = new Date().toISOString();
+  nextYear;
   constructor(public _leaveService: LeaveService) {
     this.monthLeaveForm = new FormGroup({
       month: new FormControl('', [Validators.required]),
@@ -26,7 +28,13 @@ export class ReportsComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log("curruntdate====>",this.curruntDate);
+    this.nextYear = this.curruntDate.split("-")[0];
+    this.nextYear = this.nextYear++;
+    this.nextYear = this.nextYear+ +1;
+    console.log("nextyear=====>",this.nextYear)
+   }
 
   /**
    * Get month leave report

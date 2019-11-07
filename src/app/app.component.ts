@@ -19,6 +19,7 @@ export class AppComponent {
 
   currentUser: any;
   currentUserRole = JSON.parse(localStorage.getItem('designation'));
+  count = 1;
   public appPages = [
     {
       title: 'Home',
@@ -54,7 +55,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-
     this.platform.backButton.subscribe(async () => {
       if (this.router.isActive('/login', true) && this.router.url === '/login') {
         navigator['app'].exitApp();
@@ -95,16 +95,21 @@ export class AppComponent {
       });
       this.fcm.onNotification().subscribe((data: any) => {
         console.log("sauthi important time che taro bhura=====>", data);
+        data['id'] = this.count;
+        this.count = this.count + +1;
+        console.log("count=====>", this.count, data);
         if (data.wasTapped) {
           console.log('Received in background', data.wasTapped);
           this.router.navigate([data.redirectTo]);
         } else {
           // this.router.navigate(['/home/leave-application'])
-          this.router.navigate([data.redirectTo]);
+          if (data.redirectTo) {
+            this.router.navigate([data.redirectTo]);
+          }
           console.log('Received in foreground');
           this._toastService.presentToast(data.body)
           this.localNotifications.schedule({
-            id: 1,
+            id: data.id,
             title: 'Leave Application',
             text: data.body,
             foreground: true // Show the notification while app is open

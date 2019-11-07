@@ -15,6 +15,9 @@ export class LeaveHistoryComponent implements OnInit {
   monthlyLeaveOfUser: any = [];
   yearlyLeaveOfUser: any = [];
   loading: boolean = false;
+  curruntDate: string = new Date().toISOString();
+  nextYear;
+  
   constructor(public _leaveService: LeaveService) {
     this.monthLeaveForm = new FormGroup({
       month: new FormControl('', [Validators.required]),
@@ -26,7 +29,11 @@ export class LeaveHistoryComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("curruntdate====>", this.curruntDate);
+    this.nextYear = this.curruntDate.split("-")[0];
+    this.nextYear = this.nextYear++;
+    this.nextYear = this.nextYear + +1;
+    console.log("nextyear=====>", this.nextYear)
   }
   /**
    * Get monthly leave history of user
