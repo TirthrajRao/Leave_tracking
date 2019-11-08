@@ -32,7 +32,7 @@
                 <div class="col-6 pr-2">
                     <form [formGroup]='monthLeaveForm'>
                         <ion-item>
-                            <ion-datetime displayFormat="MMMM YYYY" placeholder="Select Month" formControlName="month" (ionChange)=getMounthlyLeaveByUser(monthLeaveForm.value) max="{{nextYear}}">
+                            <ion-datetime displayFormat="MMMM YYYY" placeholder="Select Month" formControlName="month" (ionChange)=getMounthlyLeaveByUser(monthLeaveForm.value) max="{{nextYear}}" [disabled]="isVisible">
                             </ion-datetime>
                         </ion-item>
                     </form>
@@ -40,7 +40,7 @@
                 <div class="col-6 pl-2">
                     <form [formGroup]='yearLeaveForm'>
                         <ion-item>
-                            <ion-datetime displayFormat=" YYYY" placeholder="Select Year" formControlName="year" (ionChange)=getYearlyLeaveByUser(yearLeaveForm.value) max="{{nextYear}}">
+                            <ion-datetime displayFormat=" YYYY" placeholder="Select Year" formControlName="year" (ionChange)=getYearlyLeaveByUser(yearLeaveForm.value) max="{{nextYear}}" [disabled]="isVisible">
                             </ion-datetime>
                         </ion-item>
                     </form>

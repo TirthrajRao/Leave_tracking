@@ -17,6 +17,7 @@ export class LeaveHistoryComponent implements OnInit {
   loading: boolean = false;
   curruntDate: string = new Date().toISOString();
   nextYear;
+  isVisible :boolean = false;
   
   constructor(public _leaveService: LeaveService) {
     this.monthLeaveForm = new FormGroup({
@@ -40,6 +41,7 @@ export class LeaveHistoryComponent implements OnInit {
    * @param {object} data 
    */
   getMounthlyLeaveByUser(data) {
+    this.isVisible = true;
     $(".no-leave-of-year").css({ 'display': 'none' });
     this.loading = true;
     console.log("data==========>", data);
@@ -47,6 +49,7 @@ export class LeaveHistoryComponent implements OnInit {
     this._leaveService.getMounthlyLeaveByUser(data).subscribe((res: any) => {
       console.log("data===========>", res);
       this.loading = false;
+      this.isVisible = false;
       this.monthlyLeaveOfUser = res.data;
       if (res.data.length > 0) {
         this.isMonthLeave = 2;
@@ -57,6 +60,7 @@ export class LeaveHistoryComponent implements OnInit {
     }, err => {
       console.log(err);
       this.loading = false;
+      this.isVisible = false;
     })
   }
   /**
@@ -64,6 +68,7 @@ export class LeaveHistoryComponent implements OnInit {
    * @param {Object} data 
    */
   getYearlyLeaveByUser(data) {
+    this.isVisible = true;
     $('.no-leaves-of-month').css({ 'display': 'none' });
     this.monthlyLeaveOfUser = [];
     this.loading = true;
@@ -71,6 +76,7 @@ export class LeaveHistoryComponent implements OnInit {
     this._leaveService.getYearlyLeaveByUser(data).subscribe((res: any) => {
       console.log("data===========>", res);
       this.loading = false;
+      this.isVisible = false;
       this.yearlyLeaveOfUser = res.data;
       if (res.data.length > 0) {
         this.isYearLeave = 2;
@@ -81,6 +87,7 @@ export class LeaveHistoryComponent implements OnInit {
     }, err => {
       console.log(err);
       this.loading = false;
+      this.isVisible = false;
     })
   }
   getNoOfDays(days) {

@@ -18,6 +18,7 @@ export class ReportsComponent implements OnInit {
   loading: boolean = false;
   curruntDate: string = new Date().toISOString();
   nextYear;
+  isVisible :boolean = false;
   constructor(public _leaveService: LeaveService) {
     this.monthLeaveForm = new FormGroup({
       month: new FormControl('', [Validators.required]),
@@ -41,6 +42,7 @@ export class ReportsComponent implements OnInit {
    * @param {object} data 
    */
   getMonthLeaveReport(data) {
+    this.isVisible = true;
     $(".no-leave-of-year").css({ 'display': 'none' });
     this.yearLeaveReport = [];
     this.loading = true;
@@ -53,9 +55,12 @@ export class ReportsComponent implements OnInit {
       }
       console.log("month report=======>", res);
       this.loading = false;
+      this.isVisible = false;
+      this.monthLeaveForm.reset();
     }, err => {
       console.log(err);
       this.loading = false;
+      this.isVisible = false;
     })
   }
 
@@ -64,6 +69,7 @@ export class ReportsComponent implements OnInit {
    * @param {Object} data 
    */
   getYearLeaveReport(data) {
+    this.isVisible = true;
     $('.no-leaves-of-month').css({ 'display': 'none' });
     this.monthLeaveReport = [];
     console.log(data);
@@ -76,9 +82,12 @@ export class ReportsComponent implements OnInit {
       }
       console.log("year report=======>", this.yearLeaveReport, this.yearLeaveCount);
       this.loading = false;
+      this.isVisible = false;
+      this.yearLeaveForm.reset();
     }, err => {
       console.log(err);
       this.loading = false;
+      this.isVisible = false;
     })
   }
 /**
