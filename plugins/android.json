@@ -56,6 +56,9 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.rao.leavemanager"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.rao.leavemanager"
     }
   },
   "dependent_plugins": {

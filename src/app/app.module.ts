@@ -17,6 +17,7 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm/ngx';
+import {Network} from '@ionic-native/network/ngx';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     LoginGuard,
     LocalNotifications,
     FCM,
+    Network,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },
 
