@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { tap, map, catchError } from "rxjs/operators";
 import { ToastService } from './services/toast.service';
+import {UserService} from './services/user.service';
 import {
     HttpRequest,
     HttpHandler,
@@ -17,7 +18,7 @@ import * as CryptoJS from 'crypto-js';
 export class MyInterceptor implements HttpInterceptor {
     key = "tripion@raoinfor";
 
-    constructor(public route: Router, public _toastService: ToastService) {
+    constructor(public route: Router, public _toastService: ToastService,public _userService:UserService) {
     }
     //function which will be called for all http calls
     intercept(
@@ -46,7 +47,7 @@ export class MyInterceptor implements HttpInterceptor {
                     if (error.status === 401) {
                         localStorage.removeItem('accessToken');
                         this.route.navigate(['/login']);
-                        this._toastService.presentToast(errorMessage.message);
+                        this._toastService.presentToast(errorMessage.message)
                     }
                     return throwError(error);
                 })

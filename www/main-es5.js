@@ -585,6 +585,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
 /* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/toast.service */ "./src/app/services/toast.service.ts");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm5/Observable.js");
+/* harmony import */ var rxjs_add_observable_fromEvent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/add/observable/fromEvent */ "./node_modules/rxjs-compat/_esm5/add/observable/fromEvent.js");
+
+
+
 
 
 
@@ -596,7 +602,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, _userService, router, fcm, _toastService, localNotifications, navCtrl) {
+    function AppComponent(platform, splashScreen, statusBar, _userService, router, fcm, _toastService, localNotifications, navCtrl, network) {
         var _this = this;
         this.platform = platform;
         this.splashScreen = splashScreen;
@@ -607,7 +613,9 @@ var AppComponent = /** @class */ (function () {
         this._toastService = _toastService;
         this.localNotifications = localNotifications;
         this.navCtrl = navCtrl;
+        this.network = network;
         this.currentUserRole = JSON.parse(localStorage.getItem('designation'));
+        this.hide = true;
         this.count = 1;
         this.appPages = [
             {
@@ -621,6 +629,7 @@ var AppComponent = /** @class */ (function () {
                 icon: 'list'
             },
         ];
+        this.checkNetworkConectivity();
         this._userService.currentUser.subscribe(function (x) { return _this.currentUser = x; });
         router.events.subscribe(function (routerEvent) {
             _this.checkRouterEvent(routerEvent);
@@ -638,6 +647,25 @@ var AppComponent = /** @class */ (function () {
             });
         }); });
         console.log("admin user role", this.currentUserRole);
+    };
+    /**
+     * Check Internet connectivity
+     */
+    AppComponent.prototype.checkNetworkConectivity = function () {
+        var _this = this;
+        var offline = rxjs_Observable__WEBPACK_IMPORTED_MODULE_11__["Observable"].fromEvent(document, "offline");
+        var online = rxjs_Observable__WEBPACK_IMPORTED_MODULE_11__["Observable"].fromEvent(document, "online");
+        offline.subscribe(function () {
+            console.log("offline====>");
+            _this._toastService.presentToast('No internet connection!');
+            _this.hide = false;
+        });
+        online.subscribe(function () {
+            console.log("online=====>");
+            if (!_this.hide)
+                _this._toastService.presentToast('Internet Connected!');
+            _this.hide = true;
+        });
     };
     AppComponent.prototype.checkRouterEvent = function (routerEvent) {
         if (routerEvent instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__["NavigationStart"]) {
@@ -658,39 +686,45 @@ var AppComponent = /** @class */ (function () {
             else {
                 _this.router.navigate(['login']);
             }
-            // Notification
-            _this.fcm.getToken().then(function (token) {
-                console.log('token======>', token);
-                localStorage.setItem('deviceToken', token);
-                console.log("in local sstorage", localStorage.getItem('deviceToken'));
-            });
-            _this.fcm.onTokenRefresh().subscribe(function (token) {
-                console.log(token);
-            });
-            _this.fcm.onNotification().subscribe(function (data) {
-                console.log("sauthi important time che taro bhura=====>", data);
-                data['id'] = _this.count;
-                _this.count = _this.count + +1;
-                console.log("count=====>", _this.count, data);
-                if (data.wasTapped) {
-                    console.log('Received in background', data.wasTapped);
+            _this.getNotification();
+        });
+    };
+    /**
+     * Get notification
+     */
+    AppComponent.prototype.getNotification = function () {
+        var _this = this;
+        this.fcm.getToken().then(function (token) {
+            console.log('token======>', token);
+            localStorage.setItem('deviceToken', token);
+            console.log("in local sstorage", localStorage.getItem('deviceToken'));
+        });
+        this.fcm.onTokenRefresh().subscribe(function (token) {
+            console.log(token);
+        });
+        this.fcm.onNotification().subscribe(function (data) {
+            console.log("sauthi important time che taro bhura=====>", data);
+            data['id'] = _this.count;
+            _this.count = _this.count + +1;
+            console.log("count=====>", _this.count, data);
+            if (data.wasTapped) {
+                console.log('Received in background', data.wasTapped);
+                _this.router.navigate([data.redirectTo]);
+            }
+            else {
+                // this.router.navigate(['/home/leave-application'])
+                if (data.redirectTo) {
                     _this.router.navigate([data.redirectTo]);
                 }
-                else {
-                    // this.router.navigate(['/home/leave-application'])
-                    if (data.redirectTo) {
-                        _this.router.navigate([data.redirectTo]);
-                    }
-                    console.log('Received in foreground');
-                    _this._toastService.presentToast(data.body);
-                    _this.localNotifications.schedule({
-                        id: data.id,
-                        title: 'Leave Application',
-                        text: data.body,
-                        foreground: true // Show the notification while app is open
-                    });
-                }
-            });
+                console.log('Received in foreground');
+                _this._toastService.presentToast(data.body);
+                _this.localNotifications.schedule({
+                    id: data.id,
+                    title: 'Leave Application',
+                    text: data.body,
+                    foreground: true,
+                });
+            }
         });
     };
     AppComponent.ctorParameters = function () { return [
@@ -702,7 +736,8 @@ var AppComponent = /** @class */ (function () {
         { type: _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_7__["FCM"] },
         { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_9__["ToastService"] },
         { type: _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_8__["LocalNotifications"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
+        { type: _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_10__["Network"] }
     ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -718,7 +753,8 @@ var AppComponent = /** @class */ (function () {
             _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_7__["FCM"],
             _services_toast_service__WEBPACK_IMPORTED_MODULE_9__["ToastService"],
             _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_8__["LocalNotifications"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_10__["Network"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -757,6 +793,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "./node_modules/@ionic-native/google-plus/ngx/index.js");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
 /* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+
 
 
 
@@ -805,6 +843,7 @@ var AppModule = /** @class */ (function () {
                 _guards_auth_guard__WEBPACK_IMPORTED_MODULE_9__["LoginGuard"],
                 _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_8__["LocalNotifications"],
                 _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_19__["FCM"],
+                _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_20__["Network"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicRouteStrategy"] },
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HTTP_INTERCEPTORS"], useClass: _interceptor__WEBPACK_IMPORTED_MODULE_15__["MyInterceptor"], multi: true },
             ],
@@ -939,8 +978,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/toast.service */ "./src/app/services/toast.service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
@@ -948,9 +989,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MyInterceptor = /** @class */ (function () {
-    function MyInterceptor(route, _toastService) {
+    function MyInterceptor(route, _toastService, _userService) {
         this.route = route;
         this._toastService = _toastService;
+        this._userService = _userService;
         this.key = "tripion@raoinfor";
     }
     //function which will be called for all http calls
@@ -977,7 +1019,7 @@ var MyInterceptor = /** @class */ (function () {
                     _this.route.navigate(['/login']);
                     _this._toastService.presentToast(errorMessage.message);
                 }
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["throwError"])(error);
             }));
         }
         else {
@@ -992,17 +1034,18 @@ var MyInterceptor = /** @class */ (function () {
                     _this._toastService.presentToast(errorMessage.message);
                     _this.route.navigate(['/login']);
                 }
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["throwError"])(error);
             }));
         }
     };
     MyInterceptor.ctorParameters = function () { return [
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
-        { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_3__["ToastService"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
+        { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_3__["ToastService"] },
+        { type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] }
     ]; };
     MyInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _services_toast_service__WEBPACK_IMPORTED_MODULE_3__["ToastService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"], _services_toast_service__WEBPACK_IMPORTED_MODULE_3__["ToastService"], _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
     ], MyInterceptor);
     return MyInterceptor;
 }());

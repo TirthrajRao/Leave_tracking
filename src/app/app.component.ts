@@ -12,6 +12,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -147,7 +148,7 @@ export class AppComponent {
           id: data.id,
           title: 'Leave Application',
           text: data.body,
-          foreground: true // Show the notification while app is open
+          foreground: true ,// Show the notification while app is open
         });
       }
     });
