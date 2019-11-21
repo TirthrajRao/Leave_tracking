@@ -76,20 +76,8 @@
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>CDVLaunchScreen</string>
-	<key>FacebookAppID</key>
-	<string>1251992288300617</string>
-	<key>FacebookDisplayName</key>
-	<string>ionicsocial</string>
-	<key>FacebookHybridAppEvents</key>
-	<string>false</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1251992288300617</string>
-			</array>
-		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -102,11 +90,6 @@
 		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
+	<array/>
 </dict>
 </plist>

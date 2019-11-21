@@ -51,34 +51,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://m.facebook.com\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://graph.facebook.com\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://api.facebook.com\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://*.fbcdn.net\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://*.akamaihd.net\" />",
-              "count": 1
-            },
-            {
-              "xml": "<preference name=\"android-minSdkVersion\" value=\"15\" />",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"FCMPlugin\"><param name=\"android-package\" value=\"com.gae.scaffolder.plugin.FCMPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
@@ -147,20 +119,7 @@
               "count": 1
             }
           ],
-          "application": [
-            {
-              "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />",
-              "count": 1
-            },
-            {
-              "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationName\" android:value=\"@string/fb_app_name\" />",
-              "count": 1
-            },
-            {
-              "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\" android:label=\"@string/fb_app_name\" android:name=\"com.facebook.FacebookActivity\" />",
-              "count": 1
-            }
-          ],
+          "application": [],
           "/manifest/application": [
             {
               "xml": "<activity android:exported=\"true\" android:launchMode=\"singleTop\" android:name=\"com.gae.scaffolder.plugin.FCMPluginActivity\"><intent-filter><action android:name=\"FCM_PLUGIN_ACTIVITY\" /><category android:name=\"android.intent.category.DEFAULT\" /></intent-filter></activity>",
@@ -225,38 +184,12 @@
       },
       "res/values/facebookconnect.xml": {
         "parents": {
-          "/*": [
-            {
-              "xml": "<string name=\"fb_app_id\">1251992288300617</string>",
-              "count": 1
-            },
-            {
-              "xml": "<string name=\"fb_app_name\">ionicsocial</string>",
-              "count": 1
-            },
-            {
-              "xml": "<bool name=\"fb_hybrid_app_events\">false</bool>",
-              "count": 1
-            }
-          ]
+          "/*": []
         }
       },
       "app/src/main/res/values/facebookconnect.xml": {
         "parents": {
-          "/*": [
-            {
-              "xml": "<string name=\"fb_app_id\">1251992288300617</string>",
-              "count": 1
-            },
-            {
-              "xml": "<string name=\"fb_app_name\">ionicsocial</string>",
-              "count": 1
-            },
-            {
-              "xml": "<bool name=\"fb_hybrid_app_events\">false</bool>",
-              "count": 1
-            }
-          ]
+          "/*": []
         }
       }
     }
@@ -276,13 +209,6 @@
       "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.rao.leavemanager"
-    },
-    "cordova-plugin-facebook4": {
-      "APP_ID": "1251992288300617",
-      "APP_NAME": "ionicsocial",
-      "FACEBOOK_HYBRID_APP_EVENTS": "false",
-      "FACEBOOK_ANDROID_SDK_VERSION": "5.0.2",
       "PACKAGE_NAME": "com.rao.leavemanager"
     },
     "cordova-plugin-fcm-with-dependecy-updated": {
@@ -580,14 +506,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-      "pluginId": "cordova-plugin-facebook4",
-      "clobbers": [
-        "facebookConnectPlugin"
-      ]
-    },
-    {
       "id": "cordova-plugin-fcm-with-dependecy-updated.FCMPlugin",
       "file": "plugins/cordova-plugin-fcm-with-dependecy-updated/www/FCMPlugin.js",
       "pluginId": "cordova-plugin-fcm-with-dependecy-updated",
@@ -703,7 +621,6 @@
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-facebook4": "5.0.0",
     "cordova-plugin-fcm-with-dependecy-updated": "3.2.0",
     "cordova-plugin-googleplus": "8.0.0",
     "cordova-plugin-ionic-keyboard": "2.1.3",

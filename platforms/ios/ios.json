@@ -29,34 +29,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"ios-package\" value=\"FacebookConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<plugin name=\"FacebookConnectPlugin\" value=\"FacebookConnectPlugin\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://m.facebook.com\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://graph.facebook.com\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://api.facebook.com\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://*.fbcdn.net\" />",
-              "count": 1
-            },
-            {
-              "xml": "<access origin=\"https://*.akamaihd.net\" />",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"FCMPlugin\"><param name=\"ios-package\" value=\"FCMPlugin\" /></feature>",
               "count": 1
             },
@@ -121,46 +93,17 @@
       },
       "*-Info.plist": {
         "parents": {
-          "FacebookAppID": [
-            {
-              "xml": "<string>1251992288300617</string>",
-              "count": 1
-            }
-          ],
-          "FacebookDisplayName": [
-            {
-              "xml": "<string>ionicsocial</string>",
-              "count": 1
-            }
-          ],
-          "FacebookHybridAppEvents": [
-            {
-              "xml": "<string>false</string>",
-              "count": 1
-            }
-          ],
+          "FacebookAppID": [],
+          "FacebookDisplayName": [],
+          "FacebookHybridAppEvents": [],
           "CFBundleURLTypes": [
-            {
-              "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb1251992288300617</string></array></dict></array>",
-              "count": 1
-            },
             {
               "xml": "<array><dict><key>CFBundleTypeRole</key><string>Editor</string><key>CFBundleURLName</key><string>REVERSED_CLIENT_ID</string><key>CFBundleURLSchemes</key><array><string>300967011563-ar0v1mat74cu90949gt5vrf93gkq31p4.apps.googleusercontent.com</string></array></dict></array>",
               "count": 1
             }
           ],
-          "NSAppTransportSecurity": [
-            {
-              "xml": "<dict><key>NSExceptionDomains</key><dict><key>facebook.com</key><dict><key>NSIncludesSubdomains</key><true /><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><false /></dict><key>fbcdn.net</key><dict><key>NSIncludesSubdomains</key><true /><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><false /></dict><key>akamaihd.net</key><dict><key>NSIncludesSubdomains</key><true /><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><false /></dict></dict></dict>",
-              "count": 1
-            }
-          ],
-          "LSApplicationQueriesSchemes": [
-            {
-              "xml": "<array><string>fbapi</string><string>fb-messenger-api</string><string>fbauth2</string><string>fbshareextension</string></array>",
-              "count": 1
-            }
-          ]
+          "NSAppTransportSecurity": [],
+          "LSApplicationQueriesSchemes": []
         }
       },
       "*/Entitlements-Debug.plist": {
@@ -199,13 +142,6 @@
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-facebook4": {
-      "APP_ID": "1251992288300617",
-      "APP_NAME": "ionicsocial",
-      "FACEBOOK_HYBRID_APP_EVENTS": "false",
-      "FACEBOOK_ANDROID_SDK_VERSION": "5.0.2",
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-plugin-fcm-with-dependecy-updated": {
@@ -498,14 +434,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-      "pluginId": "cordova-plugin-facebook4",
-      "clobbers": [
-        "facebookConnectPlugin"
-      ]
-    },
-    {
       "id": "cordova-plugin-fcm-with-dependecy-updated.FCMPlugin",
       "file": "plugins/cordova-plugin-fcm-with-dependecy-updated/www/FCMPlugin.js",
       "pluginId": "cordova-plugin-fcm-with-dependecy-updated",
@@ -629,7 +557,6 @@
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-facebook4": "5.0.0",
     "cordova-plugin-fcm-with-dependecy-updated": "3.2.0",
     "cordova-plugin-googleplus": "8.0.0",
     "cordova-plugin-ionic-keyboard": "2.1.3",

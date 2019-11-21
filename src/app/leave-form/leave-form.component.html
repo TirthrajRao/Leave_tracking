@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="select_date text-white">Days</div>
                     <ion-item>
-                        <ion-input type="number" id="field1" formControlName="noOfDays" placeholder="Enter Number of days" step="0.5" min="0.5" id="input1" [disabled]="leaveForm.controls.shortLeave.value" ngModel="{{noOfDays}}" (keyup)="updateList($event.target.value,'days')">
+                        <ion-input type="number" id="field1" formControlName="noOfDays" placeholder="Enter Number of days" step="0.5" min="5" id="input1" [disabled]="leaveForm.controls.shortLeave.value" ngModel="{{noOfDays}}" (keyup)="updateList($event.target.value,'days')">
                         </ion-input>
                     </ion-item>
                 </div>

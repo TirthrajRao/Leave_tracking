@@ -49,7 +49,7 @@ export class UserService {
     const deviceToken = localStorage.getItem('deviceToken');
     console.log('token of device:',deviceToken);
     userData['deviceToken'] = deviceToken;
-    console.log("userData:",userData);
+    console.log("userData:",userData,config.baseApiUrl);
     return this.http.post(config.baseApiUrl + "api/login", userData).pipe(map((user: any) => {
         console.log("login user=========>", user);
         // login successful if there's a jwt token in the response

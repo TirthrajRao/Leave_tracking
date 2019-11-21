@@ -48,7 +48,7 @@ export class LeaveFormComponent implements OnInit {
     if (this.leaveForm.invalid) {
       return;
     }
-    console.log('data============>>>>>', data);
+    console.log('data======>', data);
     this._leaveService.applyLeave(data).subscribe((res: any) => {
       console.log("res of leave==========>", res);
       this._toastService.presentToast(res.message);
@@ -79,13 +79,13 @@ export class LeaveFormComponent implements OnInit {
       const element = this.elementRef.nativeElement.querySelector('#input2');
       console.log("element -----------", element);
       element.value = 3
-    } else if (e < 3 && e > 1) {
+    } else if (e < 3 && e > 1 && data === 'shortLeave') {
       const element = this.elementRef.nativeElement.querySelector('#input2');
-      // element.value = e
+      element.value = e
     } else if (e == "") {
       const element = this.elementRef.nativeElement.querySelector('#input2');
       element.value = ''
-    } else if (e < 1) {
+    } else if (e < 0 && data==='shortLeave') {
       alert("value must be positive ")
       const element = this.elementRef.nativeElement.querySelector('#input2');
       element.value = 1
